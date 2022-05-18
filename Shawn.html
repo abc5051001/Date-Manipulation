@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--==================== CSS ====================-->
+        <link rel="stylesheet" href="Shawn.css">
+
+        <title>Shawn</title>
+    </head>
+    <body>
+        <main class="main">
+            <section class="contact section" id="contact">
+                <h2 class="section__title">Shawn Date Manupilation</h2>
+                <span class="section__subtitle">05/18/2022</span>
+
+                <div class="contact__container container grid">
+
+                    <form action="" class="contact__form grid">
+                        <div class="contact__inputs grid">
+
+                            <div class="contact__content">
+                                <div>
+                                    <label for="" class="contact__label">Month</label>
+                                    <input type="text" placeholder="Exp: May"class="contact__input" id = "Month">
+                                </div>
+                                <div>
+                                    <label for="" class="contact__label">Date</label>
+                                    <input type="text" placeholder="Exp: 07"class="contact__input" id = "Date">
+                                </div>
+                                <div>
+
+                                    <label for="" class="contact__label">Year</label>
+                                    <input type="text" placeholder="Exp: 1999"class="contact__input" id = "Year">
+                                    <div>
+                                        <br>
+                                        <b style="color:black">Select The Date Format:</b>
+                                    </div>
+                                    <button type="button" class="button button--small" onclick ="Convert1()";>Format 1: (05/07/1999)</button>
+                                    <button type="button"class="button button--small" onclick ="Convert2()";>Format 2: (May 7 1999)</button>
+                                    <button type="button"class="button button--small" onclick ="Convert3()";>Format 3: (7 May 1999)</button>
+                                    <button type="button" class="button button--small"onclick ="Convert4()";>Format 4: (5/7/99)</button>
+                                    <button type="button" class="button button--small"onclick ="Convert5()";>Format 5: (7-May-22)</button>
+                                    <button type="button"class="button button--small" onclick ="Convert6()";>Format 6: (7-May)</button>
+                                </div>
+                                <input type="text" id="result" size="20">
+                                <div>
+                                    
+                                    <button type="button"class="button button--small" onclick = "DateDiff()";>Differance days of the year </button>
+                                    <input type="text" id="result2" size="20">
+                                </div>
+
+                                <div>
+                                    <button type="button"class="button button--small" onclick = "DateDiff2()";>Differance days between today </button>
+                                    <input type="text" id="result3" size="20">
+                                </div>
+                                <script>
+                                    function DateDiff(){
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (hasVal){ // for format 1, 2, 3
+                                            //    var date1 = new Date("06/30/2019");
+                                            var date1 = new Date(MinputVal+"/"+DinputVal+"/"+YinputVal);
+                                            var date2 = new Date("01/01/" + YinputVal);
+                                        }
+                                        else if(hasVal2){
+                                            var date1 = new Date(point[MinputVal]+"/"+DinputVal+"/"+YinputVal);
+                                            var date2 = new Date("01/01/" + YinputVal);
+                                        }
+                                        // To calculate the time difference of two dates
+                                        var Difference_In_Time = date1.getTime() - date2.getTime();
+                                        
+                                        // To calculate the no. of days between two dates
+                                        var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                                        document.getElementById("result2").value= Difference_In_Days;
+                                    }
+                                    function DateDiff2(){
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (hasVal){ // for format 1, 2, 3
+                                            //    var date1 = new Date("06/30/2019");
+                                            var date1 = new Date(MinputVal+"/"+DinputVal+"/"+YinputVal);
+                                        }
+                                        else if(hasVal2){
+                                            var date1 = new Date(point[MinputVal]+"/"+DinputVal+"/"+YinputVal);
+                                        }
+                                        
+                                        var date2 = new Date(); // present date 
+                                        
+                                        // To calculate the time difference of two dates
+                                        var Difference_In_Time = Math.abs(date1.getTime() - date2.getTime());
+                                        
+                                        // To calculate the no. of days between two dates
+                                        var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                                        document.getElementById("result3").value= Difference_In_Days;
+
+
+                                    }
+                                    function Convert1(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 1,
+                                            "Febuary": 2,
+                                            "March": 3,
+                                            "April": 4,
+                                            "May": 5,
+                                            "June": 6,
+                                            "July": 7,
+                                            "August": 8,
+                                            "September": 9,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value= point[MinputVal] + "/"+DinputVal +"/"+YinputVal;
+                                        }
+
+                                    }
+                                    function Convert2(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value= MinputVal + " "+DinputVal +" "+YinputVal;
+                                        }
+
+                                    }
+                                    function Convert3(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value= DinputVal + " "+MinputVal +" "+YinputVal;
+                                        }
+
+                                    }
+                                    function Convert4(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value= point[MinputVal] + "/"+DinputVal +"/"+YinputVal.slice(-2);
+                                        }
+
+                                    }
+                                    function Convert5(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value = DinputVal + "-"+MinputVal +"-"+YinputVal.slice(-2);
+                                        }
+
+                                    }
+                                    function Convert6(){
+                                        // Selecting the input element and get its value
+                                        var point = { 
+                                            "January": 01,
+                                            "Febuary": 02,
+                                            "March": 03,
+                                            "April": 04,
+                                            "May": 05,
+                                            "June": 06,
+                                            "July": 07,
+                                            "August": 08,
+                                            "September": 09,
+                                            "Octobor": 10,
+                                            "November": 11,
+                                            "December": 12
+                                        };
+                                        var MinputVal = document.getElementById("Month").value;
+                                        var DinputVal = document.getElementById("Date").value;
+                                        var YinputVal = document.getElementById("Year").value;
+                                        var hasVal = Object.values(point).includes(MinputVal);
+                                        var hasVal2 = Object.keys(point).includes(MinputVal);
+                                        var correct = true;
+                                        if (hasVal === false && hasVal2 === false){
+                                            alert("Enter a valid Month");
+                                            correct = false;
+                                        }
+                                        if(DinputVal > 31){
+                                            alert("Enter a valid Date");
+                                            correct = false;
+                                        }
+                                        if (correct){
+                                            document.getElementById("result").value= DinputVal + "-" + MinputVal;
+                                        }
+
+                                    }
+
+                                </script>
+                            </div>
+                    </form>
+                    
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
